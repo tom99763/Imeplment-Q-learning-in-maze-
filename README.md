@@ -11,3 +11,4 @@ training 10x10 maze: https://www.youtube.com/watch?v=y5RtA06udSE&feature=youtu.b
 # pretrin model
 You can use pretrain Q table to run maze.
 See test_result.py
+May be you can use other advance algorithm to run this.
