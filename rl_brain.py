@@ -2,10 +2,6 @@ import numpy as np
 import pandas as pd
 import random
 
-# cliff walking case:undiscounted epsodic task
-# epsilon=0.1
-# epsilon_decay=1e-7
-# discount=0
 
 
 class Q_learning:
@@ -16,7 +12,7 @@ class Q_learning:
 
         self.epsilon = epsilon
 
-        # after visit state-action pair which havent been visited,remember it.
+        # after visit state-action pair which havent been visited,memorize it.
         self.q_table = pd.DataFrame(columns=self.actions)
 
         self.lr = lr
@@ -55,9 +51,9 @@ class Q_learning:
         if t == False:
             q_target = r+self.discount*self.q_table.xs(s_).max()
         else:
-            q_target = r  # s_ = terminal state
+            q_target = r  
 
-        # Q(s,a) update
+        # Q(s,a) update --- Q(s,a)=Q(s,a)+lr*(r+max(Q(s_,a))-Q(s,a))
         self.q_table.xs(s)[a] += self.lr*(q_target-q_pred)
 
     # check visiting
