@@ -73,4 +73,4 @@ class Q_learning:
 
     def load_pretrain_model(self, model_name):
         self.q_table = pd.read_csv(
-            f'./result_model/{model_name}--Q_table.csv', index_col=0)
+            f'{model_name}--Q_table.csv', index_col=0)
