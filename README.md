@@ -5,4 +5,5 @@ See game_type.txt and change game_name in maze.py to test other maze environment
 
 
 # Video
-https://www.youtube.com/watch?v=y5RtA06udSE&feature=youtu.be
+
+training 10x10 maze: https://www.youtube.com/watch?v=y5RtA06udSE&feature=youtu.be
