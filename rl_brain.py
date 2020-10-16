@@ -4,16 +4,18 @@ import random
 
 
 
+
 class Q_learning:
-    def __init__(self, actions, lr=0.001, discount=0.99, epsilon=0.1, decay=1e-6):
+    def __init__(self, actions=None, lr=0.001, discount=0.99, epsilon=0.1, decay=1e-6, pretrain=False):
         self.actions = actions
 
         self.discount = discount
 
         self.epsilon = epsilon
 
-        # after visit state-action pair which havent been visited,memorize it.
-        self.q_table = pd.DataFrame(columns=self.actions)
+        # after visit state-action pair which havent been visited,remember it.
+        if not pretrain:
+            self.q_table = pd.DataFrame(columns=self.actions)
 
         self.lr = lr
 
@@ -25,25 +27,24 @@ class Q_learning:
         # check state in qtable,if not exist add into q table(remember it)
         self.check_state_exist(observation)
 
-        # exploitation 
+        # exploitation
         if random.random() > self.epsilon:
             state_action = self.q_table.xs(observation)
 
-            #random mess up to order to ensure each action have probrability to chooose 
-            #when there are some state-action which their Q(s,a) value are the same 
+            # random
             idx = np.random.permutation(state_action.index)
             state_action = state_action.reindex(idx)
             action = idx[np.argmax(state_action)]
-            #print('eploit')
-        # exploration 
+            # print('eploit')
+        # exploration
         else:
             action = np.random.choice(self.actions)
             self.epsilon -= self.decay
-            #print('explore')
+            # print('explore')
         return action
 
     def learn(self, s, a, r, s_, t):
-        # check state is in qtable,if not exist add into q table
+        # check state in qtable,if not exist add into q table(remember it)
         self.check_state_exist(s_)
         # get old Q(s,a)
         q_pred = self.q_table.xs(s)[a]
@@ -52,9 +53,9 @@ class Q_learning:
         if t == False:
             q_target = r+self.discount*self.q_table.xs(s_).max()
         else:
-            q_target = r  
+            q_target = r  # s_ = terminal state
 
-        # Q(s,a) update --- Q(s,a)=Q(s,a)+lr*(r+max(Q(s_,a))-Q(s,a))
+        # Q(s,a) update
         self.q_table.xs(s)[a] += self.lr*(q_target-q_pred)
 
     # check visiting
@@ -68,3 +69,6 @@ class Q_learning:
                     name=state
                 )
             )
+    #
+    def load_pretrain_model(self, model_name):
+        self.q_table = pd.read_csv(f'{model_name}--Q_table.csv', index_col=0)
