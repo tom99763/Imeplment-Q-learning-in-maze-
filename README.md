@@ -9,6 +9,10 @@ See game_type.txt and change game_name in maze.py to test other maze environment
 training 10x10 maze: https://www.youtube.com/watch?v=y5RtA06udSE&feature=youtu.be
 
 # pretrin model
-\n You can use pretrain Q table to run maze.
-\n See test_result.py
-\n May be you can use other advance algorithm to run this.
+You can use pretrain Q table to run maze.
+
+
+See test_result.py
+
+
+May be you can use other advance algorithm to run this.
