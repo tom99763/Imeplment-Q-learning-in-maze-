@@ -47,11 +47,11 @@ def simulate():
 
 
 if __name__ == "__main__":
-
+    game_name="maze-random-10x10-v0"
     num_episode = 300
     RENDER_MAZE = True
 
-    env = gym.make("maze-random-10x10-v0")
+    env = gym.make(game_name)
     ACTION = env.actions
 
     algorithm = Q_learning(actions=np.arange(
@@ -59,4 +59,4 @@ if __name__ == "__main__":
 
     Q_table = simulate()
 
-    Q_table.to_csv('Q_table.csv')
+    Q_table.to_csv(f'{game_name}---Q_table.csv')
