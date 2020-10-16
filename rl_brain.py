@@ -29,7 +29,8 @@ class Q_learning:
         if random.random() > self.epsilon:
             state_action = self.q_table.xs(observation)
 
-            # random 
+            #random mess up to order to ensure each action have probrability to chooose 
+            #when there are some state-action which their Q(s,a) value are the same 
             idx = np.random.permutation(state_action.index)
             state_action = state_action.reindex(idx)
             action = idx[np.argmax(state_action)]
