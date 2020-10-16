@@ -56,5 +56,6 @@ if __name__ == "__main__":
         env.action_space.n), discount=0.99, lr=0.1, decay=1e-7, epsilon=0.2)
 
     Q_table = simulate()
-
+    
+    #save to csv,check Q distribution
     Q_table.to_csv(f'{game_name}---Q_table.csv')
