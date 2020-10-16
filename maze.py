@@ -5,7 +5,7 @@ import gym
 import gym_maze
 import pandas as pd
 
-from learning_model.rl_brain import Q_learning
+from rl_brain import Q_learning
 
 
 def simulate():
@@ -58,4 +58,4 @@ if __name__ == "__main__":
 
     Q_table = simulate()
 
-    Q_table.to_csv(f'./result.model/{game_name}--Q_table.csv')
+    Q_table.to_csv(f'{game_name}--Q_table.csv')
