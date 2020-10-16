@@ -42,7 +42,7 @@ class Q_learning:
         return action
 
     def learn(self, s, a, r, s_, t):
-        # check state in qtable,if not exist add into q table(remember it)
+        # check state is in qtable,if not exist add into q table
         self.check_state_exist(s_)
         # get old Q(s,a)
         q_pred = self.q_table.xs(s)[a]
