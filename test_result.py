@@ -3,7 +3,7 @@ import pandas as pd
 import time
 import gym
 import gym_maze
-from learning_model.rl_brain import Q_learning
+from rl_brain import Q_learning
 
 
 def test():
